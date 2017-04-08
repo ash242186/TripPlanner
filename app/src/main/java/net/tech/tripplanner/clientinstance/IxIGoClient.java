@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class IxIGoClient {
-    public static final String AUTOCOMPLETE_BASE_URL = "http://build2.ixigo.com/action/content/zeus/";
+    public static final String BASE_URL = "http://build2.ixigo.com/";
     private static Retrofit retrofit = null;
 
 
@@ -28,7 +28,7 @@ public class IxIGoClient {
 
             retrofit = new Retrofit.Builder()
                     .client(builder.build())
-                    .baseUrl(AUTOCOMPLETE_BASE_URL)
+                    .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }

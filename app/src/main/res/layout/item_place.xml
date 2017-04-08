@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/Place_card_view"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_marginBottom="@dimen/spacing_1dp"
+    android:layout_marginEnd="@dimen/spacing_6dp"
+    android:layout_marginLeft="@dimen/spacing_6dp"
+    android:layout_marginRight="@dimen/spacing_6dp"
+    android:layout_marginStart="@dimen/spacing_6dp"
+    android:layout_marginTop="@dimen/spacing_3dp"
+    card_view:cardCornerRadius="@dimen/spacing_2dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="210dp">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true">
+
+                <ProgressBar
+                    android:id="@+id/image_loading_indicator"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical|center_horizontal"
+                    android:indeterminateTint="@color/white"
+                    android:indeterminateTintMode="src_atop" />
+
+                <ImageView
+                    android:id="@+id/place_ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="fitXY" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/placeNameTextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginStart="10dp"
+                android:text="Name of place"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/addressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left|start"
+            android:drawableLeft="@drawable/ic_location_on_black_24dp"
+            android:drawablePadding="@dimen/spacing_4dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:text="OPENED"
+            android:textColor="@color/colorBlack"
+            android:textSize="@dimen/text_small" />
+
+        <com.nex3z.flowlayout.FlowLayout
+            android:id="@+id/categoriesNameTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/spacing_4dp"
+            android:paddingBottom="@dimen/spacing_4dp"
+            app:childSpacing="auto"
+            app:childSpacingForLastRow="align"
+            app:rowSpacing="@dimen/spacing_4dp"></com.nex3z.flowlayout.FlowLayout>
+
+        <TextView
+            android:id="@+id/priceTagTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingStart="10dp"
+            android:text="OPENED"
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

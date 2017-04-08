@@ -47,4 +47,5 @@ dependencies {
     compile 'com.squareup.retrofit2:converter-gson:2.2.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
     compile 'com.android.support:support-vector-drawable:25.3.1'
+    compile 'com.nex3z:flow-layout:0.1.3'
 }
