@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_place_to_visit"
+        android:title="@string/title_placevisit" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@drawable/ic_hotel_black_24dp"
+        android:title="@string/title_accommodation" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_things_to_do"
+        android:title="@string/title_thingstodo" />
+
+</menu>

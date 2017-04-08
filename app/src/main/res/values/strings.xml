@@ -1,4 +1,12 @@
 <resources>
     <string name="app_name">TripPlanner</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="title_activity_poi">Points of Interest</string>
+    <string name="title_placevisit">Places To Visit</string>
+    <string name="title_accommodation">Accommodation</string>
+    <string name="title_thingstodo">Things to do</string>
+
+
+    <string name="emptyplaces">Nothing in %s</string>
+    <string name="empty"></string>
 </resources>

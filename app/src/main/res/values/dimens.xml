@@ -1,3 +1,22 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+
+    <!--Common Text Sizes-->
+    <dimen name="text_mega">30sp</dimen>
+    <dimen name="text_extra_large">22sp</dimen>
+    <dimen name="text_large">20sp</dimen>
+    <dimen name="text_medium">18sp</dimen>
+    <dimen name="text_small">14sp</dimen>
+    <dimen name="text_extra_small">10sp</dimen>
+    <!-- Common Padding Values-->
+    <dimen name="spacing_1dp">1dp</dimen>
+    <dimen name="spacing_2dp">2dp</dimen>
+    <dimen name="spacing_3dp">3dp</dimen>
+    <dimen name="spacing_4dp">4dp</dimen>
+    <dimen name="spacing_6dp">6dp</dimen>
+    <dimen name="spacing_12dp">12dp</dimen>
+    <dimen name="spacing_16dp">16dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 </resources>
