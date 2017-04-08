@@ -129,9 +129,9 @@ public class POIItemListAdapter extends RecyclerView.Adapter<POIItemListAdapter.
 
             @Override
             public void onClick(View view) {
-                Intent sednBundle = new Intent(context, PlaceDetailActivity.class);
-                sednBundle.putExtra("entityId", result.getId());
-                context.startActivity(sednBundle);
+                Intent sendBundle = new Intent(context, PlaceDetailActivity.class);
+                sendBundle.putExtra("entityId", result.getId());
+                context.startActivity(sendBundle);
             }
         });
 

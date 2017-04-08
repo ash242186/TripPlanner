@@ -4,7 +4,9 @@ package net.tech.tripplanner.adapter;
  * Created by ashwini on 4/9/2017.
  */
 
+
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.v4.view.PagerAdapter;
@@ -22,6 +24,8 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 
+import net.tech.tripplanner.POIActivity;
+import net.tech.tripplanner.PlaceDetailActivity;
 import net.tech.tripplanner.R;
 import net.tech.tripplanner.clientinstance.IxIGoClient;
 import net.tech.tripplanner.dataprovider.IxigoRetrofitService;
@@ -40,11 +44,12 @@ public class HistoryPlacesPageAdapter extends PagerAdapter {
     private Picasso picBuilder;
     private Call<POIDetailsPlaceResponse> placeDetailCall;
     private LayoutInflater inflater;
-
+    private Context context;
 
 
     public HistoryPlacesPageAdapter(Context mContext, List<String> cities) {
         this.cities = cities;
+        this.context = mContext;
         this.picBuilder = new Picasso.Builder(mContext)
                 .build();
         this.inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -64,7 +69,7 @@ public class HistoryPlacesPageAdapter extends PagerAdapter {
     public Object instantiateItem(final ViewGroup container, int position) {
         //return super.instantiateItem(container, position);
         ViewPager pager = (ViewPager) container;
-        ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.history_item, pager, false);
+        final ViewGroup layout = (ViewGroup) inflater.inflate(R.layout.history_item, pager, false);
         layout.setTag(position);
 
         final View imageLoadingIndicator = layout.findViewById(R.id.image_loading_indicator);
@@ -79,7 +84,7 @@ public class HistoryPlacesPageAdapter extends PagerAdapter {
                 Log.i(TAG, response.body().toString());
                 if(response.isSuccessful()){
                     //processdetail(response.body().getData());
-                    Result place = response.body().getData();
+                    final Result place = response.body().getData();
                     if (!TextUtils.isEmpty(place.getKeyImageUrl())) {
                         picBuilder.load(place.getKeyImageUrl())
                                 .fit()
@@ -105,19 +110,27 @@ public class HistoryPlacesPageAdapter extends PagerAdapter {
                     categoriesNameTextView.removeAllViews();
                     for(Object category : place.getCategoryNames()){
                         if(!TextUtils.isEmpty(String.valueOf(category))) {
-                            TextView tv = new TextView(container.getContext());
+                            TextView tv = new TextView(context);
                             tv.setText(String.valueOf(category));
                             tv.setPadding(20, 20, 20, 20);
                             tv.setBackgroundResource(R.drawable.label_bg);
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                                tv.setTextColor(container.getContext().getResources().getColor(R.color.white, null));
+                                tv.setTextColor(context.getResources().getColor(R.color.white, null));
                             } else {
-                                tv.setTextColor(container.getContext().getResources().getColor(R.color.white));
+                                tv.setTextColor(context.getResources().getColor(R.color.white));
                             }
                             categoriesNameTextView.addView(tv, new FlowLayout.LayoutParams(FlowLayout.LayoutParams.WRAP_CONTENT, FlowLayout.LayoutParams.WRAP_CONTENT));
                         }
                     }
 
+                    layout.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            Intent intent = new Intent(context, POIActivity.class);
+                            intent.putExtra("CityId", place.getId());
+                            context.startActivity(intent);
+                        }
+                    });
                 }
             }
 
@@ -126,7 +139,6 @@ public class HistoryPlacesPageAdapter extends PagerAdapter {
                 Log.e(TAG, t.getLocalizedMessage());
             }
         });
-
         pager.addView(layout);
         return layout;
     }

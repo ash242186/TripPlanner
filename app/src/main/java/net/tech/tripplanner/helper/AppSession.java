@@ -4,13 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import java.util.TreeSet;
-
-import org.apache.commons.lang3.StringUtils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.preference.PreferenceManager;
+import android.text.TextUtils;
 
 
 public class AppSession {
@@ -22,14 +21,14 @@ public class AppSession {
 
 
     public AppSession(Context context) {
-        sharedPref = context.getSharedPreferences(SHARED, Context.MODE_PRIVATE);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
     }
 
 
     public ArrayList<String> Get_Arraykey(String key) {
         ArrayList<String> array = new ArrayList<String>();
-        String str = sharedPref.getString(key, StringUtils.join(array, ","));
-        String[] arr = StringUtils.split(str, ",");
+        String str = sharedPref.getString(key, TextUtils.join(",", array));
+        String[] arr = TextUtils.split(str, ",");
         array.addAll(Arrays.asList(arr));
         return array;
     }
@@ -44,7 +43,7 @@ public class AppSession {
         }
         if (value != null) {
             array.add(value);
-            editor.putString(key, StringUtils.join(value, ","));
+            editor.putString(key, TextUtils.join(",", array));
         }
 
         editor.apply();
