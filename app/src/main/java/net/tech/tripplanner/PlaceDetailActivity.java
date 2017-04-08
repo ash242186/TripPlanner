@@ -37,7 +37,7 @@ public class PlaceDetailActivity extends AppCompatActivity {
     private FlowLayout categoriesNameTextView;
     private Call<POIDetailsPlaceResponse> placeDetailCall;
 
-    private TextView placeNameTextView, addressTextView, priceTagTextView, descriptionTextView, whyTovisitTextView;
+    private TextView placeNameTextView, addressTextView, priceTagTextView, descriptionTextView, whyTovisitTextView, websiteTextView;
     private ProgressBar image_loading_indicator;
 
     @Override
@@ -54,6 +54,7 @@ public class PlaceDetailActivity extends AppCompatActivity {
         descriptionTextView = (TextView)findViewById(R.id.descriptionTextView);
         place_ImageView = (ImageView) findViewById(R.id.place_ImageView);
         addressTextView = (TextView)findViewById(R.id.addressTextView);
+        websiteTextView = (TextView) findViewById(R.id.websiteTextView);
         categoriesNameTextView = (FlowLayout) findViewById(R.id.categoriesNameTextView);
         image_loading_indicator = (ProgressBar) findViewById(R.id.image_loading_indicator);
 
@@ -146,8 +147,25 @@ public class PlaceDetailActivity extends AppCompatActivity {
         }else{
             whyTovisitTextView.setVisibility(View.GONE);
         }
+
+        if(!TextUtils.isEmpty(place.getUrl())){
+            websiteTextView.setText(place.getWhyToVisit());
+            websiteTextView.setVisibility(View.VISIBLE);
+        }else{
+            websiteTextView.setVisibility(View.GONE);
+        }
     }
 
+    public void expendDescription(View view){
+        Object tag = descriptionTextView.getTag();
+        if(Boolean.parseBoolean(String.valueOf(tag))){
+            descriptionTextView.setMaxLines(3);
+            descriptionTextView.setTag(false);
+        }else {
+            descriptionTextView.setMaxLines(Integer.MAX_VALUE);
+            descriptionTextView.setTag(true);
+        }
+    }
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){

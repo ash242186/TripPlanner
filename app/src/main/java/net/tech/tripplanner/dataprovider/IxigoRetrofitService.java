@@ -30,4 +30,7 @@ public interface IxigoRetrofitService {
 
     @GET("api/v3/namedentities/id/{entityId}?apiKey=ixicode!2$")
     Call<POIDetailsPlaceResponse> getPOIDetailPlace(@Path("entityId") String entityId);
+
+    @GET("api/v2/widgets/brand/inspire?product=1&apiKey=ixicode!2$")
+    Call<POIDetailsPlaceResponse> getRecommendedPlace(@Path("entityId") String entityId);
 }

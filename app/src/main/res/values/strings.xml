@@ -11,7 +11,7 @@
     <string name="empty"></string>
     <string name="direction_txt">Direction</string>
     <string name="website_txt">Website</string>
-    <string name="currency">Currency : %s \u20B9</string>
+    <string name="currency">%s \u20B9</string>
 
     <string name="serverError">Some Server Error Occurred, Please try after sometime</string>
 </resources>

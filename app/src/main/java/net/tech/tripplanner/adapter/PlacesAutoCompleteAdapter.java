@@ -13,6 +13,7 @@ import android.widget.TextView;
 import net.tech.tripplanner.POIActivity;
 import net.tech.tripplanner.PlaceAutocompleteActivity;
 import net.tech.tripplanner.R;
+import net.tech.tripplanner.helper.AppSession;
 import net.tech.tripplanner.model.AutoCompletePlacesResponse;
 
 import java.util.ArrayList;
@@ -29,10 +30,12 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
     private final String LOG_TAG = getClass().getSimpleName();
     private LayoutInflater inflater;
     private Context mContext;
+    private AppSession session;
 
     public PlacesAutoCompleteAdapter(Context context) {
         this.mContext = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        session = new AppSession(context);
     }
 
     public void updateData(List<AutoCompletePlacesResponse> data) {
@@ -65,6 +68,7 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
             @Override
             public void onClick(View view) {
                 Log.i(LOG_TAG, "clicked");
+                session.Set_Arraykey(session.App_history_places, res.getId());
                 Intent intent = new Intent(mContext, POIActivity.class);
                 intent.putExtra("CityId", res.getId());
                 mContext.startActivity(intent);

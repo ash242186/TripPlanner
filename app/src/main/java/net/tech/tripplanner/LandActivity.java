@@ -2,20 +2,30 @@ package net.tech.tripplanner;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import net.tech.tripplanner.adapter.HistoryPlacesPageAdapter;
+import net.tech.tripplanner.helper.AppSession;
+
+import java.util.ArrayList;
+
+import me.relex.circleindicator.CircleIndicator;
 
 public class LandActivity extends AppCompatActivity {
 
     private View emptyRecyclerView;
     private TextView emptytextView;
+
+    private AppSession session;
+    private ViewPager historyRecyclerView;
+    private CircleIndicator indicator;
+    private HistoryPlacesPageAdapter historyAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +34,31 @@ public class LandActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        session = new AppSession(this);
+
         emptyRecyclerView = findViewById(R.id.emptyRecyclerView);
-        emptyRecyclerView.setVisibility(View.VISIBLE);
         emptytextView = (TextView) findViewById(R.id.emptytextView);
-        emptytextView.setText(getString(R.string.emptyplaces, "Search History \n Please search new place"));
+
+        historyRecyclerView = (ViewPager) findViewById(R.id.historyRecyclerView);
+        indicator = (CircleIndicator) findViewById(R.id.indicator);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        ArrayList<String> cities = session.Get_Arraykey(session.App_history_places);
+        if(cities.size() == 0) {
+            emptyRecyclerView.setVisibility(View.VISIBLE);
+            emptytextView.setText(getString(R.string.emptyplaces, "Search History \n Please search new place"));
+            historyRecyclerView.setVisibility(View.GONE);
+        }else{
+            emptyRecyclerView.setVisibility(View.GONE);
+            historyRecyclerView.setVisibility(View.VISIBLE);
+            historyAdapter = new HistoryPlacesPageAdapter(this, cities);
+            historyRecyclerView.setAdapter(historyAdapter);
+            indicator.setViewPager(historyRecyclerView);
+        }
     }
 
     @Override

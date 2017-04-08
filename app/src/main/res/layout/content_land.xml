@@ -9,14 +9,89 @@
     tools:context="net.tech.tripplanner.LandActivity"
     tools:showIn="@layout/activity_land">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottomrelativeLayout"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
-    <include
-        android:id="@+id/emptyRecyclerView"
-        layout="@layout/view_empty_places"
-        android:visibility="visible" />
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_history_black_24dp"
+                    android:drawablePadding="@dimen/spacing_6dp"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_6dp"
+                    android:text="History" />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="@dimen/spacing_12dp">
+
+                    <android.support.v4.view.ViewPager
+                        android:id="@+id/historyRecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"></android.support.v4.view.ViewPager>
+
+                    <me.relex.circleindicator.CircleIndicator
+                        android:id="@+id/indicator"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_alignParentTop="true" />
+                </RelativeLayout>
+            </LinearLayout>
+
+            <include
+                android:id="@+id/emptyRecyclerView"
+                layout="@layout/view_empty_places"
+                android:visibility="gone" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/ic_trending_up_black_24dp"
+                    android:drawablePadding="@dimen/spacing_6dp"
+                    android:gravity="center"
+                    android:padding="@dimen/spacing_6dp"
+                    android:text="Recommended" />
+
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/trendingRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
+            </LinearLayout>
+        </FrameLayout>
+    </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/relativeLayout"
+        android:visibility="visible"
+        android:id="@+id/bottomrelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
