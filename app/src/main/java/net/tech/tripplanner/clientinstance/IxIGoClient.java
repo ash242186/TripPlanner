@@ -1,5 +1,8 @@
 package net.tech.tripplanner.clientinstance;
 
+import net.tech.tripplanner.model.AutoCompletePlacesResponse;
+import net.tech.tripplanner.model.Result;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -12,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class IxIGoClient {
     public static final String BASE_URL = "http://build2.ixigo.com/";
     private static Retrofit retrofit = null;
+    private static AutoCompletePlacesResponse currentCity = null;
 
 
     public static Retrofit getClient() {
@@ -33,5 +37,13 @@ public class IxIGoClient {
                     .build();
         }
         return retrofit;
+    }
+
+    public static AutoCompletePlacesResponse getCurrentCity() {
+        return currentCity;
+    }
+
+    public static void setCurrentCity(AutoCompletePlacesResponse currentCity) {
+        IxIGoClient.currentCity = currentCity;
     }
 }

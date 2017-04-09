@@ -9,94 +9,62 @@
     tools:context="net.tech.tripplanner.LandActivity"
     tools:showIn="@layout/activity_land">
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:layout_above="@+id/bottomrelativeLayout"
         android:layout_alignParentTop="true"
-        android:orientation="vertical">
+        android:layout_weight="1">
 
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:drawableLeft="@drawable/ic_history_black_24dp"
+                android:drawablePadding="@dimen/spacing_6dp"
+                android:gravity="center"
+                android:padding="@dimen/spacing_6dp"
+                android:text="History" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_history_black_24dp"
-                    android:drawablePadding="@dimen/spacing_6dp"
-                    android:gravity="center"
-                    android:padding="@dimen/spacing_6dp"
-                    android:text="History" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="@dimen/spacing_12dp">
-
-                    <android.support.v4.view.ViewPager
-                        android:id="@+id/historyRecyclerView"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerHorizontal="true"></android.support.v4.view.ViewPager>
-
-                    <me.relex.circleindicator.CircleIndicator
-                        android:id="@+id/indicator"
-                        android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:layout_alignParentTop="true" />
-                </RelativeLayout>
-            </LinearLayout>
-
-            <include
-                android:id="@+id/emptyRecyclerView"
-                layout="@layout/view_empty_places"
-                android:visibility="gone" />
-        </FrameLayout>
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:visibility="gone">
-
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:drawableLeft="@drawable/ic_trending_up_black_24dp"
-                    android:drawablePadding="@dimen/spacing_6dp"
-                    android:gravity="center"
-                    android:padding="@dimen/spacing_6dp"
-                    android:text="Recommended" />
+                android:layout_height="match_parent"
+                android:padding="@dimen/spacing_12dp">
 
                 <android.support.v4.view.ViewPager
-                    android:id="@+id/trendingRecyclerView"
+                    android:id="@+id/historyRecyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"></android.support.v4.view.ViewPager>
-            </LinearLayout>
-        </FrameLayout>
-    </LinearLayout>
+                    android:layout_height="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"></android.support.v4.view.ViewPager>
+
+                <me.relex.circleindicator.CircleIndicator
+                    android:id="@+id/indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_alignParentTop="true" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <include
+            android:id="@+id/emptyRecyclerView"
+            layout="@layout/view_empty_places"
+            android:visibility="gone" />
+    </FrameLayout>
+
 
     <RelativeLayout
-        android:visibility="visible"
         android:id="@+id/bottomrelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorBlack"
-        android:padding="@dimen/spacing_4dp">
+        android:padding="@dimen/spacing_4dp"
+        android:visibility="visible">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -106,6 +74,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/currentLocationTxt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Unknow Location"
@@ -119,6 +88,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:onClick="myLocation"
             android:padding="@dimen/spacing_2dp"
             app:srcCompat="@android:drawable/ic_menu_mylocation" />
     </RelativeLayout>

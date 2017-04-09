@@ -46,7 +46,7 @@
     <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp">
+        android:paddingTop="10dp">
 
         <com.nex3z.flowlayout.FlowLayout
             android:id="@+id/categoriesNameTextView"

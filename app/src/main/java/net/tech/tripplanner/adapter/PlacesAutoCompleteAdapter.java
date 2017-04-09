@@ -1,5 +1,6 @@
 package net.tech.tripplanner.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import net.tech.tripplanner.LandActivity;
 import net.tech.tripplanner.POIActivity;
 import net.tech.tripplanner.PlaceAutocompleteActivity;
+import net.tech.tripplanner.PlaceDetailActivity;
 import net.tech.tripplanner.R;
 import net.tech.tripplanner.helper.AppSession;
 import net.tech.tripplanner.model.AutoCompletePlacesResponse;
@@ -30,12 +36,12 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
     private final String LOG_TAG = getClass().getSimpleName();
     private LayoutInflater inflater;
     private Context mContext;
-    private AppSession session;
+    //private AppSession session;
 
     public PlacesAutoCompleteAdapter(Context context) {
         this.mContext = context;
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        session = new AppSession(context);
+        //session = new AppSession(context);
     }
 
     public void updateData(List<AutoCompletePlacesResponse> data) {
@@ -67,11 +73,16 @@ public class PlacesAutoCompleteAdapter extends RecyclerView.Adapter<PlacesAutoCo
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i(LOG_TAG, "clicked");
-                session.Set_Arraykey(session.App_history_places, res.getId());
-                Intent intent = new Intent(mContext, POIActivity.class);
-                intent.putExtra("CityId", res.getId());
-                mContext.startActivity(intent);
+                Log.i(LOG_TAG, "clicked " + mContext);
+                //session.Set_Arraykey(session.App_history_places, res.getId());
+                Intent intent = new Intent();
+                intent.putExtra("places", new GsonBuilder()
+                        .create().toJson(res, AutoCompletePlacesResponse.class));
+                if(mContext instanceof PlaceAutocompleteActivity){
+                    ((PlaceAutocompleteActivity)mContext).setResult(Activity.RESULT_OK, intent);
+                    ((PlaceAutocompleteActivity)mContext).finish();
+                }
+                //mContext.startActivity(intent);
             }
         });
     }

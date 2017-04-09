@@ -6,11 +6,7 @@ import net.tech.tripplanner.model.POIPlacesResponse;
 
 import java.util.List;
 
-import okhttp3.OkHttpClient;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -30,7 +26,4 @@ public interface IxigoRetrofitService {
 
     @GET("api/v3/namedentities/id/{entityId}?apiKey=ixicode!2$")
     Call<POIDetailsPlaceResponse> getPOIDetailPlace(@Path("entityId") String entityId);
-
-    @GET("api/v2/widgets/brand/inspire?product=1&apiKey=ixicode!2$")
-    Call<POIDetailsPlaceResponse> getRecommendedPlace(@Path("entityId") String entityId);
 }

@@ -107,6 +107,18 @@ public class POIActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        FragmentManager fm  = getSupportFragmentManager();
+        int BackStackEntryCount =  fm.getBackStackEntryCount();
+        System.out.println("BackStackEntryCount "+BackStackEntryCount);
+        if(BackStackEntryCount == 1) {
+            finish();
+        }else {
+            super.onBackPressed();
+        }
+    }
+
     public void updateToolbarTitle(int Text){
         toolbar.setTitle(Text);
     }

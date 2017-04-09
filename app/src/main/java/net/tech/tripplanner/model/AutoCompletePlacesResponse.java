@@ -109,7 +109,7 @@ public class AutoCompletePlacesResponse {
         this.co = co;
     }
 
-    @Override
+    /*@Override
     public String toString() {
         return "AutoCompletePlacesResponse{" +
                 "id='" + id + '\'' +
@@ -122,5 +122,10 @@ public class AutoCompletePlacesResponse {
                 ", st='" + st + '\'' +
                 ", co='" + co + '\'' +
                 '}';
+    }*/
+
+    @Override
+    public String toString() {
+        return text;
     }
 }
